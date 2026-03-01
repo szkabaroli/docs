@@ -1,0 +1,4819 @@
+openapi: 3.1.0
+paths:
+  /v1/hosts:
+    post:
+      operationId: createHost
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateHostDTO"
+      responses:
+        "201":
+          description: ""
+      summary: ""
+      tags:
+        - Host
+    get:
+      operationId: listHosts
+      parameters: []
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - Host
+  /v1/hosts/{id}:
+    get:
+      operationId: getHostById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - Host
+  /v1/projects:
+    post:
+      operationId: createProject
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProjectCreateRequestDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - Project
+    get:
+      operationId: listProjects
+      parameters: []
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectListResponseDto_Output"
+      summary: ""
+      tags:
+        - Project
+  /v1/projects/{id}:
+    get:
+      operationId: getProjectById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - Project
+    delete:
+      operationId: deleteProject
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - Project
+  /v1/hostgroups:
+    post:
+      operationId: createHostgroup
+      parameters:
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HostgroupCreateRequestDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HostgroupCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - Hostgroup
+    get:
+      operationId: listHostgroups
+      parameters:
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HostgroupListResponseDto_Output"
+      summary: ""
+      tags:
+        - Hostgroup
+  /v1/hostgroups/{id}:
+    get:
+      operationId: getHostgroupById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HostgroupCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - Hostgroup
+    delete:
+      operationId: deleteHostgroup
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - Hostgroup
+  /v1/organizations:
+    post:
+      operationId: createOrganization
+      parameters: []
+      responses:
+        "201":
+          description: ""
+      summary: ""
+      tags:
+        - Organization
+    get:
+      operationId: listOrganizations
+      parameters: []
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - Organization
+  /v1/organizations/{uuid}:
+    get:
+      operationId: getOrganizationById
+      parameters:
+        - name: uuid
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - Organization
+  /v1/applications:
+    post:
+      operationId: createApplication
+      parameters: []
+      responses:
+        "201":
+          description: ""
+      summary: ""
+      tags:
+        - Application
+    get:
+      operationId: listApplications
+      parameters:
+        - name: orgId
+          required: true
+          in: query
+          description: Filter applications by organization UUID.
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - Application
+  /v1/applications/{id}/connect-repo:
+    post:
+      operationId: connectRepoToApplication
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConnectRepoBodyDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectRepoResponseDto_Output"
+      summary: ""
+      tags:
+        - Application
+  /v1/applications/{applicationId}/workloads:
+    post:
+      operationId: createWorkload
+      parameters:
+        - name: applicationId
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkloadCreateRequestDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkloadCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - Workload
+    get:
+      operationId: listWorkloads
+      parameters:
+        - name: applicationId
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - Workload
+  /v1/applications/{applicationId}/workloads/{name}:
+    delete:
+      operationId: deleteWorkload
+      parameters:
+        - name: applicationId
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: name
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - Workload
+  /v1/workspaces:
+    post:
+      operationId: createWorkspace
+      parameters:
+        - name: projectId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkspaceCreateRequestDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkspaceCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - Workspace
+    get:
+      operationId: listWorkspaces
+      parameters:
+        - name: projectId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkspaceListResponseDto_Output"
+      summary: ""
+      tags:
+        - Workspace
+  /v1/workspaces/{id}:
+    get:
+      operationId: getWorkspaceById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: projectId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkspaceCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - Workspace
+    delete:
+      operationId: deleteWorkspace
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: projectId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - Workspace
+  /v1/workspaces/{workspaceId}/connections:
+    post:
+      operationId: createWorkspaceConnection
+      parameters:
+        - name: workspaceId
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkspaceConnectionCreateRequestDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkspaceConnectionCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - WorkspaceConnection
+    get:
+      operationId: listWorkspaceConnections
+      parameters:
+        - name: workspaceId
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkspaceConnectionListResponseDto_Output"
+      summary: ""
+      tags:
+        - WorkspaceConnection
+  /v1/workspaces/{workspaceId}/connections/{id}:
+    get:
+      operationId: getWorkspaceConnectionById
+      parameters:
+        - name: workspaceId
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkspaceConnectionCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - WorkspaceConnection
+    delete:
+      operationId: deleteWorkspaceConnection
+      parameters:
+        - name: workspaceId
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - WorkspaceConnection
+  /v1/oauth-apps/{id}:
+    get:
+      operationId: getOAuthAppById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: expand
+          required: false
+          in: query
+          schema:
+            anyOf:
+              - type: string
+              - type: array
+                items:
+                  type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OAuthAppResponseDto_Output"
+      summary: ""
+      tags:
+        - OAuthApp
+  /v1/oauth-apps:
+    get:
+      operationId: listOAuthApps
+      parameters:
+        - name: expand
+          required: false
+          in: query
+          schema:
+            anyOf:
+              - type: string
+              - type: array
+                items:
+                  type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OAuthAppListResponseDto_Output"
+      summary: ""
+      tags:
+        - OAuthApp
+  /v1/tenants/{id}:
+    get:
+      operationId: getTenantById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TenantResponseDto_Output"
+      summary: ""
+      tags:
+        - Tenant
+  /v1/tenants:
+    get:
+      operationId: listTenants
+      parameters: []
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TenantListResponseDto_Output"
+      summary: ""
+      tags:
+        - Tenant
+  /v1/users/email/{email}:
+    get:
+      operationId: getUserByEmail
+      parameters:
+        - name: email
+          required: true
+          in: path
+          schema:
+            format: email
+            pattern: ^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$
+            type: string
+        - name: expand
+          required: false
+          in: query
+          schema:
+            anyOf:
+              - type: string
+              - type: array
+                items:
+                  type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponseDto_Output"
+      summary: ""
+      tags:
+        - User
+  /v1/users/{id}:
+    get:
+      operationId: getUserById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: expand
+          required: false
+          in: query
+          schema:
+            anyOf:
+              - type: string
+              - type: array
+                items:
+                  type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponseDto_Output"
+      summary: ""
+      tags:
+        - User
+  /v1/users:
+    get:
+      operationId: listUsers
+      parameters:
+        - name: expand
+          required: false
+          in: query
+          schema:
+            anyOf:
+              - type: string
+              - type: array
+                items:
+                  type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserListResponseDto_Output"
+      summary: ""
+      tags:
+        - User
+  /v1/files:
+    post:
+      operationId: uploadFile
+      parameters:
+        - name: organizationId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: purpose
+          required: false
+          in: query
+          schema:
+            type: string
+            enum:
+              - tenant_brand_logo
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                purpose:
+                  type: string
+                  enum:
+                    - tenant_brand_logo
+              required:
+                - file
+                - purpose
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FileUploadResponseDto_Output"
+      summary: ""
+      tags:
+        - File
+    get:
+      operationId: listFiles
+      parameters:
+        - name: organizationId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: purpose
+          required: false
+          in: query
+          schema:
+            type: string
+            enum:
+              - tenant_brand_logo
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FileListResponseDto_Output"
+      summary: ""
+      tags:
+        - File
+  /v1/files/{id}:
+    get:
+      operationId: getFileById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: organizationId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: purpose
+          required: false
+          in: query
+          schema:
+            type: string
+            enum:
+              - tenant_brand_logo
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FileGetResponseDto_Output"
+      summary: ""
+      tags:
+        - File
+    delete:
+      operationId: deleteFile
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: organizationId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: purpose
+          required: false
+          in: query
+          schema:
+            type: string
+            enum:
+              - tenant_brand_logo
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FileDeleteResponseDto_Output"
+      summary: ""
+      tags:
+        - File
+  /v1/catalog/templates/{id}:
+    get:
+      operationId: getCatalogTemplateById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CatalogTemplateGetResponseDto_Output"
+      summary: ""
+      tags:
+        - CatalogTemplate
+  /v1/catalog/templates:
+    get:
+      operationId: listCatalogTemplates
+      parameters:
+        - name: hidden
+          required: false
+          in: query
+          schema:
+            type: boolean
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CatalogTemplateListResponseDto_Output"
+      summary: ""
+      tags:
+        - CatalogTemplate
+  /v1/deployments/events:
+    get:
+      operationId: streamDeploymentEvents
+      parameters:
+        - name: orgId
+          required: false
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: applicationId
+          required: false
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: environmentId
+          required: false
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: status
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/DeploymentStatus"
+        - name: cursor
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 100
+            default: 20
+            type: integer
+        - name: expand
+          required: false
+          in: query
+          schema:
+            anyOf:
+              - type: string
+              - type: array
+                items:
+                  type: string
+      responses:
+        "200":
+          description: Stream of deployment events
+          content:
+            text/event-stream:
+              schema:
+                $ref: "#/components/schemas/DeploymentStreamEvent"
+      summary: Stream deployment events via Server-Sent Events
+      tags:
+        - Deployment
+  /v1/deployments:
+    get:
+      operationId: listDeployments
+      parameters:
+        - name: orgId
+          required: false
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: applicationId
+          required: false
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: environmentId
+          required: false
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: status
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/DeploymentStatus"
+        - name: cursor
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 100
+            default: 20
+            type: integer
+        - name: expand
+          required: false
+          in: query
+          schema:
+            anyOf:
+              - type: string
+              - type: array
+                items:
+                  type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeploymentListResponseDto_Output"
+      summary: ""
+      tags:
+        - Deployment
+  /v1/deployments/{id}:
+    get:
+      operationId: getDeploymentById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: orgId
+          required: false
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: applicationId
+          required: false
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: environmentId
+          required: false
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: status
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/DeploymentStatus"
+        - name: cursor
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 100
+            default: 20
+            type: integer
+        - name: expand
+          required: false
+          in: query
+          schema:
+            anyOf:
+              - type: string
+              - type: array
+                items:
+                  type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeploymentGetResponseDto_Output"
+      summary: ""
+      tags:
+        - Deployment
+  /v1/deployments/{id}/cancel:
+    patch:
+      operationId: cancelDeployment
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeploymentGetResponseDto_Output"
+      summary: ""
+      tags:
+        - Deployment
+  /v1/environments:
+    post:
+      operationId: createEnvironment
+      parameters:
+        - name: applicationId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnvironmentCreateRequestDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvironmentCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - Environment
+    get:
+      operationId: listEnvironments
+      parameters:
+        - name: applicationId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvironmentListResponseDto_Output"
+      summary: ""
+      tags:
+        - Environment
+  /v1/environments/{id}:
+    get:
+      operationId: getEnvironmentById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: applicationId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvironmentGetResponseDto_Output"
+      summary: ""
+      tags:
+        - Environment
+    delete:
+      operationId: deleteEnvironment
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: applicationId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - Environment
+  /v1/environment-types/{id}:
+    get:
+      operationId: getEnvironmentTypeById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvironmentTypeGetResponseDto_Output"
+      summary: ""
+      tags:
+        - EnvironmentType
+  /v1/environment-types:
+    get:
+      operationId: listEnvironmentTypes
+      parameters: []
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvironmentTypeListResponseDto_Output"
+      summary: ""
+      tags:
+        - EnvironmentType
+  /v1/instance-presets:
+    get:
+      operationId: listInstancePresets
+      parameters:
+        - name: category
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: activeOnly
+          required: false
+          in: query
+          schema:
+            default: true
+            type: boolean
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InstancePresetListResponseDto_Output"
+      summary: ""
+      tags:
+        - Instance Presets
+  /v1/instance-presets/{id}:
+    get:
+      operationId: getInstancePresetById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InstancePresetGetResponseDto_Output"
+      summary: ""
+      tags:
+        - Instance Presets
+  /v1/github-app/installations:
+    get:
+      operationId: listGithubAppInstallations
+      parameters: []
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GithubAppInstallationListResponseDto_Output"
+      summary: ""
+      tags:
+        - GithubAppInstallation
+  /v1/github-app/installations/{installationId}/repositories:
+    get:
+      operationId: listGithubAppInstallationRepositories
+      parameters:
+        - name: installationId
+          required: true
+          in: path
+          schema:
+            minimum: -9007199254740991
+            maximum: 9007199254740991
+            type: integer
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 9007199254740991
+            default: 1
+            type: integer
+        - name: perPage
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 100
+            default: 30
+            type: integer
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GithubRepositoryListResponseDto_Output"
+      summary: ""
+      tags:
+        - GithubAppInstallation
+  /v1/github-app/installations/{installationId}:
+    get:
+      operationId: getGithubAppInstallationById
+      parameters:
+        - name: installationId
+          required: true
+          in: path
+          schema:
+            minimum: -9007199254740991
+            maximum: 9007199254740991
+            type: integer
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GithubAppInstallationResponseDto_Output"
+      summary: ""
+      tags:
+        - GithubAppInstallation
+  /v1/resource-types:
+    get:
+      operationId: listResourceTypes
+      parameters: []
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceTypeListResponseDto_Output"
+      summary: ""
+      tags:
+        - ResourceType
+  /v1/resource-types/{type}:
+    get:
+      operationId: getResourceType
+      parameters:
+        - name: type
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceTypeGetResponseDto_Output"
+      summary: ""
+      tags:
+        - ResourceType
+  /v1/resource-rules:
+    post:
+      operationId: createResourceRule
+      parameters:
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResourceRuleCreateRequestDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceRuleCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - ResourceRule
+    get:
+      operationId: listResourceRules
+      parameters:
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceRuleListResponseDto_Output"
+      summary: ""
+      tags:
+        - ResourceRule
+  /v1/resource-rules/{id}:
+    get:
+      operationId: getResourceRule
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceRuleGetResponseDto_Output"
+      summary: ""
+      tags:
+        - ResourceRule
+  /v1/resource-providers:
+    get:
+      operationId: listResourceProviders
+      parameters:
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceProviderListResponseDto_Output"
+      summary: ""
+      tags:
+        - ResourceProvider
+  /v1/resource-providers/{id}:
+    get:
+      operationId: getResourceProvider
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceProviderGetResponseDto_Output"
+      summary: ""
+      tags:
+        - ResourceProvider
+  /v1/http-services:
+    post:
+      operationId: createHttpService
+      parameters:
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HttpServiceCreateRequestDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HttpServiceCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - HttpService
+    get:
+      operationId: listHttpServices
+      parameters:
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HttpServiceListResponseDto_Output"
+      summary: ""
+      tags:
+        - HttpService
+  /v1/http-services/{id}:
+    get:
+      operationId: getHttpServiceById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HttpServiceCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - HttpService
+    delete:
+      operationId: deleteHttpService
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - HttpService
+  /v1/http-clients:
+    post:
+      operationId: createHttpClient
+      parameters:
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HttpClientCreateRequestDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HttpClientCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - HttpClient
+    get:
+      operationId: listHttpClients
+      parameters:
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HttpClientListResponseDto_Output"
+      summary: ""
+      tags:
+        - HttpClient
+  /v1/http-clients/{id}:
+    get:
+      operationId: getHttpClientById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HttpClientCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - HttpClient
+    delete:
+      operationId: deleteHttpClient
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - HttpClient
+  /v1/smtp-services:
+    post:
+      operationId: createSmtpService
+      parameters:
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SmtpServiceCreateRequestDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SmtpServiceCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - SmtpService
+    get:
+      operationId: listSmtpServices
+      parameters:
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SmtpServiceListResponseDto_Output"
+      summary: ""
+      tags:
+        - SmtpService
+  /v1/smtp-services/{id}:
+    get:
+      operationId: getSmtpServiceById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        default:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SmtpServiceCreateResponseDto_Output"
+      summary: ""
+      tags:
+        - SmtpService
+    delete:
+      operationId: deleteSmtpService
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+        - name: orgId
+          required: true
+          in: query
+          schema:
+            format: uuid
+            pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            type: string
+      responses:
+        "200":
+          description: ""
+      summary: ""
+      tags:
+        - SmtpService
+info:
+  title: MeshX Cloud API
+  description: MeshX Cloud API
+  version: 0.1.0-beta
+  contact:
+    name: The MeshX Team
+    url: https://meshx.co/contact
+    email: hello@meshx.co
+  termsOfService: https://meshx.co/legal/tos
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+tags: []
+servers:
+  - url: /public
+    description: Public API (via Gateway)
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    CreateHostDTO:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            name:
+              type: string
+            project:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            cpu_count:
+              type: integer
+              minimum: -9007199254740991
+              maximum: 9007199254740991
+            cpu_kind:
+              type: string
+              enum:
+                - burst
+                - dedicated
+            ram_mb:
+              type: integer
+              minimum: -9007199254740991
+              maximum: 9007199254740991
+              multipleOf: 512
+          required:
+            - name
+            - project
+            - cpu_count
+            - cpu_kind
+            - ram_mb
+      required:
+        - data
+    CreateProject:
+      id: CreateProject
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 256
+        slug:
+          type: string
+          minLength: 1
+          maxLength: 256
+          pattern: ^[a-z0-9-]+$
+      required:
+        - name
+        - slug
+    ProjectCreateRequestDto:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/CreateProject"
+      required:
+        - data
+    Project_Output:
+      id: Project_Output
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        name:
+          type: string
+        slug:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+        updatedAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+      required:
+        - id
+        - name
+        - slug
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+    ProjectCreateResponseDto_Output:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/Project_Output"
+      required:
+        - data
+      additionalProperties: false
+    ProjectListResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Project_Output"
+      required:
+        - data
+      additionalProperties: false
+    HostgroupCreateRequestDto:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            name:
+              type: string
+              minLength: 1
+              maxLength: 256
+            desiredReplicas:
+              type: integer
+              minimum: 1
+              maximum: 10
+            instancePresetId:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            regionId:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+          required:
+            - name
+            - desiredReplicas
+            - instancePresetId
+            - regionId
+      required:
+        - data
+    HostgroupCreateResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            name:
+              type: string
+            state:
+              type: string
+              enum:
+                - creating
+                - ready
+                - terminated
+            desiredReplicas:
+              type: integer
+              minimum: -9007199254740991
+              maximum: 9007199254740991
+            instance:
+              type: object
+              properties:
+                presetId:
+                  anyOf:
+                    - type: string
+                      format: uuid
+                      pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+                    - type: "null"
+                presetSlug:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                category:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                vcpuCount:
+                  anyOf:
+                    - type: integer
+                      minimum: -9007199254740991
+                      maximum: 9007199254740991
+                    - type: "null"
+                ramMiB:
+                  anyOf:
+                    - type: integer
+                      minimum: -9007199254740991
+                      maximum: 9007199254740991
+                    - type: "null"
+              required:
+                - presetId
+                - presetSlug
+                - category
+                - vcpuCount
+                - ramMiB
+              additionalProperties: false
+            hosts:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  serverId:
+                    type: string
+                required:
+                  - id
+                  - serverId
+                additionalProperties: false
+            organizationId:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            regionId:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            createdBy:
+              type: string
+            createdAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            updatedAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+          required:
+            - id
+            - name
+            - state
+            - desiredReplicas
+            - instance
+            - organizationId
+            - regionId
+            - createdBy
+            - createdAt
+            - updatedAt
+          additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    HostgroupListResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              name:
+                type: string
+              state:
+                type: string
+                enum:
+                  - creating
+                  - ready
+                  - terminated
+              desiredReplicas:
+                type: integer
+                minimum: -9007199254740991
+                maximum: 9007199254740991
+              instance:
+                type: object
+                properties:
+                  presetId:
+                    anyOf:
+                      - type: string
+                        format: uuid
+                        pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+                      - type: "null"
+                  presetSlug:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  category:
+                    anyOf:
+                      - type: string
+                      - type: "null"
+                  vcpuCount:
+                    anyOf:
+                      - type: integer
+                        minimum: -9007199254740991
+                        maximum: 9007199254740991
+                      - type: "null"
+                  ramMiB:
+                    anyOf:
+                      - type: integer
+                        minimum: -9007199254740991
+                        maximum: 9007199254740991
+                      - type: "null"
+                required:
+                  - presetId
+                  - presetSlug
+                  - category
+                  - vcpuCount
+                  - ramMiB
+                additionalProperties: false
+              hosts:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    serverId:
+                      type: string
+                  required:
+                    - id
+                    - serverId
+                  additionalProperties: false
+              organizationId:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              regionId:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              createdBy:
+                type: string
+              createdAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+              updatedAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            required:
+              - id
+              - name
+              - state
+              - desiredReplicas
+              - instance
+              - organizationId
+              - regionId
+              - createdBy
+              - createdAt
+              - updatedAt
+            additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    ConnectRepoData:
+      id: ConnectRepoData
+      type: object
+      properties:
+        installationId:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+        owner:
+          type: string
+        name:
+          type: string
+        fullName:
+          type: string
+        defaultBranch:
+          default: main
+          type: string
+        isPrivate:
+          default: true
+          type: boolean
+      required:
+        - installationId
+        - owner
+        - name
+        - fullName
+    ConnectRepoBodyDto:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/ConnectRepoData"
+      required:
+        - data
+    VcsRepo_Output:
+      id: VcsRepo_Output
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        installationId:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+        owner:
+          type: string
+        name:
+          type: string
+        fullName:
+          type: string
+        defaultBranch:
+          anyOf:
+            - type: string
+            - type: "null"
+        isPrivate:
+          anyOf:
+            - type: boolean
+            - type: "null"
+        createdAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+        updatedAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+      required:
+        - id
+        - installationId
+        - owner
+        - name
+        - fullName
+        - defaultBranch
+        - isPrivate
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+    ConnectRepoResponseDto_Output:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/VcsRepo_Output"
+      required:
+        - data
+      additionalProperties: false
+    WorkloadCreateRequestDto:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            name:
+              type: string
+            annotations:
+              type: object
+              propertyNames:
+                type: string
+              additionalProperties:
+                type: string
+            service:
+              type: object
+              properties:
+                name:
+                  type: string
+                image:
+                  type: string
+                  format: uri
+                maxRestarts:
+                  type: number
+              required:
+                - name
+                - image
+                - maxRestarts
+            components:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  image:
+                    type: string
+                    format: uri
+                  poolSize:
+                    type: number
+                  maxInvocations:
+                    type: number
+                required:
+                  - name
+                  - image
+                  - poolSize
+                  - maxInvocations
+            hostInterfaces:
+              type: array
+              items:
+                type: object
+                properties:
+                  namespace:
+                    type: string
+                  package:
+                    type: string
+                  interfaces:
+                    type: array
+                    items:
+                      type: string
+                  config:
+                    type: object
+                    propertyNames:
+                      type: string
+                    additionalProperties:
+                      type: string
+                required:
+                  - namespace
+                  - package
+                  - interfaces
+                  - config
+            volumes:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  volumeType:
+                    anyOf:
+                      - type: object
+                        properties:
+                          hostPath:
+                            type: object
+                            properties:
+                              local_path:
+                                type: string
+                            required:
+                              - local_path
+                        required:
+                          - hostPath
+                      - type: object
+                        properties:
+                          emptyDir:
+                            type: object
+                            properties: {}
+                            additionalProperties: false
+                        required:
+                          - emptyDir
+                required:
+                  - name
+                  - volumeType
+          required:
+            - name
+            - components
+            - hostInterfaces
+      required:
+        - data
+    WorkloadCreateResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            name:
+              type: string
+            annotations:
+              type: object
+              propertyNames:
+                type: string
+              additionalProperties:
+                type: string
+            service:
+              type: object
+              properties:
+                name:
+                  type: string
+                image:
+                  type: string
+                  format: uri
+                maxRestarts:
+                  type: number
+              required:
+                - name
+                - image
+                - maxRestarts
+              additionalProperties: false
+            components:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  image:
+                    type: string
+                    format: uri
+                  poolSize:
+                    type: number
+                  maxInvocations:
+                    type: number
+                required:
+                  - name
+                  - image
+                  - poolSize
+                  - maxInvocations
+                additionalProperties: false
+            hostInterfaces:
+              type: array
+              items:
+                type: object
+                properties:
+                  namespace:
+                    type: string
+                  package:
+                    type: string
+                  interfaces:
+                    type: array
+                    items:
+                      type: string
+                  config:
+                    type: object
+                    propertyNames:
+                      type: string
+                    additionalProperties:
+                      type: string
+                required:
+                  - namespace
+                  - package
+                  - interfaces
+                  - config
+                additionalProperties: false
+            volumes:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  volumeType:
+                    anyOf:
+                      - type: object
+                        properties:
+                          hostPath:
+                            type: object
+                            properties:
+                              local_path:
+                                type: string
+                            required:
+                              - local_path
+                            additionalProperties: false
+                        required:
+                          - hostPath
+                        additionalProperties: false
+                      - type: object
+                        properties:
+                          emptyDir:
+                            type: object
+                            properties: {}
+                            additionalProperties: false
+                        required:
+                          - emptyDir
+                        additionalProperties: false
+                required:
+                  - name
+                  - volumeType
+                additionalProperties: false
+          required:
+            - name
+            - components
+            - hostInterfaces
+          additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    WorkspaceCreateRequestDto:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            name:
+              type: string
+              minLength: 1
+              maxLength: 256
+            slug:
+              type: string
+              minLength: 1
+              maxLength: 256
+              pattern: ^[a-z0-9-]+$
+            auth:
+              default: secured
+              type: string
+              enum:
+                - public
+                - anonymous
+                - secured
+            regionId:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+          required:
+            - name
+            - slug
+            - regionId
+      required:
+        - data
+    WorkspaceCreateResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            name:
+              type: string
+            slug:
+              type: string
+            status:
+              type: string
+              enum:
+                - creating
+                - active
+                - stopped
+                - terminated
+            auth:
+              type: string
+              enum:
+                - public
+                - anonymous
+                - secured
+            projectId:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            regionId:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            createdBy:
+              type: string
+            createdAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            updatedAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+          required:
+            - id
+            - name
+            - slug
+            - status
+            - auth
+            - projectId
+            - regionId
+            - createdBy
+            - createdAt
+            - updatedAt
+          additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    WorkspaceListResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              name:
+                type: string
+              slug:
+                type: string
+              status:
+                type: string
+                enum:
+                  - creating
+                  - active
+                  - stopped
+                  - terminated
+              auth:
+                type: string
+                enum:
+                  - public
+                  - anonymous
+                  - secured
+              projectId:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              regionId:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              createdBy:
+                type: string
+              createdAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+              updatedAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            required:
+              - id
+              - name
+              - slug
+              - status
+              - auth
+              - projectId
+              - regionId
+              - createdBy
+              - createdAt
+              - updatedAt
+            additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    WorkspaceConnectionCreateRequestDto:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            serverUrl:
+              type: string
+              format: uri
+            type:
+              default: http-service
+              type: string
+              enum:
+                - http-service
+          required:
+            - serverUrl
+      required:
+        - data
+    WorkspaceConnectionCreateResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            workspaceId:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            serverUrl:
+              type: string
+            type:
+              type: string
+              enum:
+                - http-service
+            status:
+              type: string
+              enum:
+                - connected
+                - disconnected
+                - error
+            lastSeenAt:
+              anyOf:
+                - type: string
+                  format: date-time
+                  pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+                - type: "null"
+            createdAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            updatedAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+          required:
+            - id
+            - workspaceId
+            - serverUrl
+            - type
+            - status
+            - lastSeenAt
+            - createdAt
+            - updatedAt
+          additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    WorkspaceConnectionListResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              workspaceId:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              serverUrl:
+                type: string
+              type:
+                type: string
+                enum:
+                  - http-service
+              status:
+                type: string
+                enum:
+                  - connected
+                  - disconnected
+                  - error
+              lastSeenAt:
+                anyOf:
+                  - type: string
+                    format: date-time
+                    pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+                  - type: "null"
+              createdAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+              updatedAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            required:
+              - id
+              - workspaceId
+              - serverUrl
+              - type
+              - status
+              - lastSeenAt
+              - createdAt
+              - updatedAt
+            additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    Tenant_Output:
+      id: Tenant_Output
+      type: object
+      properties:
+        id:
+          type: string
+        slug:
+          type: string
+        name:
+          type: string
+        status:
+          $ref: "#/components/schemas/TenantStatus_Output"
+        branding:
+          $ref: "#/components/schemas/TenantBranding_Output"
+        allowedEmailDomains:
+          anyOf:
+            - type: string
+            - type: "null"
+        features:
+          $ref: "#/components/schemas/TenantFeatures_Output"
+      required:
+        - id
+        - slug
+        - name
+        - status
+        - branding
+        - allowedEmailDomains
+        - features
+      additionalProperties: false
+    TenantStatus_Output:
+      id: TenantStatus_Output
+      type: string
+      enum:
+        - active
+        - inactive
+        - suspended
+    TenantBranding_Output:
+      id: TenantBranding_Output
+      anyOf:
+        - type: object
+          properties:
+            primaryColor:
+              type: string
+          additionalProperties: false
+        - type: "null"
+    TenantFeatures_Output:
+      id: TenantFeatures_Output
+      anyOf:
+        - type: object
+          properties:
+            passwordAuth:
+              type: boolean
+            socialAuth:
+              type: boolean
+            enterpriseSso:
+              type: boolean
+            passkeys:
+              type: boolean
+          additionalProperties: false
+        - type: "null"
+    OAuthAppResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            clientId:
+              type: string
+            name:
+              anyOf:
+                - type: string
+                - type: "null"
+            uri:
+              anyOf:
+                - type: string
+                - type: "null"
+            icon:
+              anyOf:
+                - type: string
+                - type: "null"
+            disabled:
+              anyOf:
+                - type: boolean
+                - type: "null"
+            scopes:
+              anyOf:
+                - type: array
+                  items:
+                    type: string
+                - type: "null"
+            redirectUris:
+              type: array
+              items:
+                type: string
+            grantTypes:
+              anyOf:
+                - type: array
+                  items:
+                    type: string
+                - type: "null"
+            responseTypes:
+              anyOf:
+                - type: array
+                  items:
+                    type: string
+                - type: "null"
+            public:
+              anyOf:
+                - type: boolean
+                - type: "null"
+            type:
+              anyOf:
+                - type: string
+                - type: "null"
+            tenantId:
+              anyOf:
+                - type: string
+                - type: "null"
+            tenant:
+              $ref: "#/components/schemas/Tenant_Output"
+            createdAt:
+              anyOf:
+                - type: string
+                  format: date-time
+                  pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+                - type: "null"
+            updatedAt:
+              anyOf:
+                - type: string
+                  format: date-time
+                  pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+                - type: "null"
+          required:
+            - id
+            - clientId
+            - name
+            - uri
+            - icon
+            - disabled
+            - scopes
+            - redirectUris
+            - grantTypes
+            - responseTypes
+            - public
+            - type
+            - createdAt
+            - updatedAt
+          additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    OAuthAppListResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              clientId:
+                type: string
+              name:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              uri:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              icon:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              disabled:
+                anyOf:
+                  - type: boolean
+                  - type: "null"
+              scopes:
+                anyOf:
+                  - type: array
+                    items:
+                      type: string
+                  - type: "null"
+              redirectUris:
+                type: array
+                items:
+                  type: string
+              grantTypes:
+                anyOf:
+                  - type: array
+                    items:
+                      type: string
+                  - type: "null"
+              responseTypes:
+                anyOf:
+                  - type: array
+                    items:
+                      type: string
+                  - type: "null"
+              public:
+                anyOf:
+                  - type: boolean
+                  - type: "null"
+              type:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              tenantId:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              tenant:
+                $ref: "#/components/schemas/Tenant_Output"
+              createdAt:
+                anyOf:
+                  - type: string
+                    format: date-time
+                    pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+                  - type: "null"
+              updatedAt:
+                anyOf:
+                  - type: string
+                    format: date-time
+                    pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+                  - type: "null"
+            required:
+              - id
+              - clientId
+              - name
+              - uri
+              - icon
+              - disabled
+              - scopes
+              - redirectUris
+              - grantTypes
+              - responseTypes
+              - public
+              - type
+              - createdAt
+              - updatedAt
+            additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    TenantResponseDto_Output:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/Tenant_Output"
+      required:
+        - data
+      additionalProperties: false
+    TenantListResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Tenant_Output"
+      required:
+        - data
+      additionalProperties: false
+    User_Output:
+      id: User_Output
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        emailVerified:
+          type: boolean
+        image:
+          anyOf:
+            - type: string
+            - type: "null"
+        createdAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+        updatedAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+        tenantId:
+          anyOf:
+            - type: string
+            - type: "null"
+        tenant:
+          $ref: "#/components/schemas/Tenant_Output"
+      required:
+        - id
+        - name
+        - email
+        - emailVerified
+        - image
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+    UserResponseDto_Output:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/User_Output"
+      required:
+        - data
+      additionalProperties: false
+    UserListResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/User_Output"
+      required:
+        - data
+      additionalProperties: false
+    FileUploadResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            object:
+              type: string
+              const: file
+            created:
+              type: integer
+              minimum: -9007199254740991
+              maximum: 9007199254740991
+            expiresAt:
+              anyOf:
+                - type: integer
+                  minimum: -9007199254740991
+                  maximum: 9007199254740991
+                - type: "null"
+            filename:
+              anyOf:
+                - type: string
+                - type: "null"
+            purpose:
+              type: string
+              enum:
+                - tenant_brand_logo
+            size:
+              type: integer
+              minimum: -9007199254740991
+              maximum: 9007199254740991
+            title:
+              anyOf:
+                - type: string
+                - type: "null"
+            type:
+              anyOf:
+                - type: string
+                - type: "null"
+            url:
+              anyOf:
+                - type: string
+                - type: "null"
+          required:
+            - id
+            - object
+            - created
+            - expiresAt
+            - filename
+            - purpose
+            - size
+            - title
+            - type
+            - url
+          additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    FileGetResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            object:
+              type: string
+              const: file
+            created:
+              type: integer
+              minimum: -9007199254740991
+              maximum: 9007199254740991
+            expiresAt:
+              anyOf:
+                - type: integer
+                  minimum: -9007199254740991
+                  maximum: 9007199254740991
+                - type: "null"
+            filename:
+              anyOf:
+                - type: string
+                - type: "null"
+            purpose:
+              type: string
+              enum:
+                - tenant_brand_logo
+            size:
+              type: integer
+              minimum: -9007199254740991
+              maximum: 9007199254740991
+            title:
+              anyOf:
+                - type: string
+                - type: "null"
+            type:
+              anyOf:
+                - type: string
+                - type: "null"
+            url:
+              anyOf:
+                - type: string
+                - type: "null"
+          required:
+            - id
+            - object
+            - created
+            - expiresAt
+            - filename
+            - purpose
+            - size
+            - title
+            - type
+            - url
+          additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    FileListResponseDto_Output:
+      type: object
+      properties:
+        object:
+          type: string
+          const: list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              object:
+                type: string
+                const: file
+              created:
+                type: integer
+                minimum: -9007199254740991
+                maximum: 9007199254740991
+              expiresAt:
+                anyOf:
+                  - type: integer
+                    minimum: -9007199254740991
+                    maximum: 9007199254740991
+                  - type: "null"
+              filename:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              purpose:
+                type: string
+                enum:
+                  - tenant_brand_logo
+              size:
+                type: integer
+                minimum: -9007199254740991
+                maximum: 9007199254740991
+              title:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              type:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              url:
+                anyOf:
+                  - type: string
+                  - type: "null"
+            required:
+              - id
+              - object
+              - created
+              - expiresAt
+              - filename
+              - purpose
+              - size
+              - title
+              - type
+              - url
+            additionalProperties: false
+        hasMore:
+          type: boolean
+      required:
+        - object
+        - data
+        - hasMore
+      additionalProperties: false
+    FileDeleteResponseDto_Output:
+      type: object
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          const: file
+        deleted:
+          type: boolean
+      required:
+        - id
+        - object
+        - deleted
+      additionalProperties: false
+    CatalogTemplateGetResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            repoName:
+              anyOf:
+                - type: string
+                - type: "null"
+            displayName:
+              anyOf:
+                - type: string
+                - type: "null"
+            author:
+              anyOf:
+                - type: string
+                - type: "null"
+            import:
+              anyOf:
+                - type: string
+                - type: "null"
+            compatibility:
+              anyOf:
+                - type: string
+                - type: "null"
+            summary:
+              anyOf:
+                - type: string
+                - type: "null"
+            iconUrl:
+              anyOf:
+                - type: string
+                - type: "null"
+            bannerUrl:
+              anyOf:
+                - type: string
+                - type: "null"
+            readme:
+              anyOf:
+                - type: string
+                - type: "null"
+            latestVersion:
+              anyOf:
+                - type: string
+                - type: "null"
+            versions:
+              type: array
+              items:
+                type: string
+            stars:
+              type: integer
+              minimum: -9007199254740991
+              maximum: 9007199254740991
+            hidden:
+              type: boolean
+            createdAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            updatedAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+          required:
+            - id
+            - name
+            - repoName
+            - displayName
+            - author
+            - import
+            - compatibility
+            - summary
+            - iconUrl
+            - bannerUrl
+            - readme
+            - latestVersion
+            - versions
+            - stars
+            - hidden
+            - createdAt
+            - updatedAt
+          additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    CatalogTemplateListResponseDto_Output:
+      type: object
+      properties:
+        object:
+          type: string
+          const: list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              repoName:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              displayName:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              author:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              import:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              compatibility:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              summary:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              iconUrl:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              bannerUrl:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              readme:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              latestVersion:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              versions:
+                type: array
+                items:
+                  type: string
+              stars:
+                type: integer
+                minimum: -9007199254740991
+                maximum: 9007199254740991
+              hidden:
+                type: boolean
+              createdAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+              updatedAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            required:
+              - id
+              - name
+              - repoName
+              - displayName
+              - author
+              - import
+              - compatibility
+              - summary
+              - iconUrl
+              - bannerUrl
+              - readme
+              - latestVersion
+              - versions
+              - stars
+              - hidden
+              - createdAt
+              - updatedAt
+            additionalProperties: false
+        hasMore:
+          type: boolean
+      required:
+        - object
+        - data
+        - hasMore
+      additionalProperties: false
+    DeploymentEventType:
+      id: DeploymentEventType
+      type: string
+      enum:
+        - deployment.sync
+        - deployment.created
+        - deployment.updated
+        - deployment.deleted
+        - heartbeat
+    DeploymentSyncPayload:
+      id: DeploymentSyncPayload
+      type: object
+      properties:
+        type:
+          type: string
+          const: deployment.sync
+        timestamp:
+          type: string
+        payload:
+          type: object
+          properties:
+            deployments:
+              type: array
+              items:
+                $ref: "#/components/schemas/Deployment"
+            cursor:
+              type: string
+          required:
+            - deployments
+            - cursor
+      required:
+        - type
+        - timestamp
+        - payload
+    Deployment:
+      id: Deployment
+      type: object
+      properties:
+        id:
+          type: string
+        applicationId:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        environmentId:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        environment:
+          $ref: "#/components/schemas/Environment"
+        status:
+          $ref: "#/components/schemas/DeploymentStatus"
+        meta:
+          anyOf:
+            - type: object
+              propertyNames:
+                type: string
+              additionalProperties: {}
+            - type: "null"
+        createdBy:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+        updatedAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+        readyAt:
+          anyOf:
+            - type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            - type: "null"
+      required:
+        - id
+        - applicationId
+        - status
+        - meta
+        - createdBy
+        - createdAt
+        - updatedAt
+        - readyAt
+    Environment:
+      id: Environment
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        name:
+          type: string
+        slug:
+          type: string
+        typeId:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        type:
+          $ref: "#/components/schemas/EnvironmentType"
+        branch:
+          anyOf:
+            - type: string
+            - type: "null"
+        applicationId:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        createdBy:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+        updatedAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+      required:
+        - id
+        - name
+        - slug
+        - typeId
+        - branch
+        - applicationId
+        - createdBy
+        - createdAt
+        - updatedAt
+    EnvironmentType:
+      id: EnvironmentType
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        name:
+          type: string
+        description:
+          anyOf:
+            - type: string
+            - type: "null"
+        createdAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+      required:
+        - id
+        - name
+        - description
+        - createdAt
+    DeploymentStatus:
+      id: DeploymentStatus
+      type: string
+      enum:
+        - queued
+        - building
+        - provisioning
+        - deploying
+        - ready
+        - failed
+        - cancelled
+    DeploymentCreatedPayload:
+      id: DeploymentCreatedPayload
+      type: object
+      properties:
+        type:
+          type: string
+          const: deployment.created
+        timestamp:
+          type: string
+        payload:
+          $ref: "#/components/schemas/Deployment"
+      required:
+        - type
+        - timestamp
+        - payload
+    DeploymentUpdatedPayload:
+      id: DeploymentUpdatedPayload
+      type: object
+      properties:
+        type:
+          type: string
+          const: deployment.updated
+        timestamp:
+          type: string
+        payload:
+          type: object
+          properties:
+            id:
+              type: string
+            status:
+              $ref: "#/components/schemas/DeploymentStatus"
+            previousStatus:
+              $ref: "#/components/schemas/DeploymentStatus"
+          required:
+            - id
+            - status
+      required:
+        - type
+        - timestamp
+        - payload
+    HeartbeatPayload:
+      id: HeartbeatPayload
+      type: object
+      properties:
+        timestamp:
+          type: string
+      required:
+        - timestamp
+    DeploymentStreamEvent:
+      type: object
+      properties:
+        id:
+          description: Event ID for resuming with Last-Event-ID header
+          type: string
+        event:
+          $ref: "#/components/schemas/DeploymentEventType"
+        data:
+          anyOf:
+            - $ref: "#/components/schemas/DeploymentSyncPayload"
+            - $ref: "#/components/schemas/DeploymentCreatedPayload"
+            - $ref: "#/components/schemas/DeploymentUpdatedPayload"
+            - $ref: "#/components/schemas/HeartbeatPayload"
+      required:
+        - id
+        - event
+        - data
+      id: DeploymentStreamEvent
+    Deployment_Output:
+      id: Deployment_Output
+      type: object
+      properties:
+        id:
+          type: string
+        applicationId:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        environmentId:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        environment:
+          $ref: "#/components/schemas/Environment_Output"
+        status:
+          $ref: "#/components/schemas/DeploymentStatus_Output"
+        meta:
+          anyOf:
+            - type: object
+              propertyNames:
+                type: string
+              additionalProperties: {}
+            - type: "null"
+        createdBy:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+        updatedAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+        readyAt:
+          anyOf:
+            - type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            - type: "null"
+      required:
+        - id
+        - applicationId
+        - status
+        - meta
+        - createdBy
+        - createdAt
+        - updatedAt
+        - readyAt
+      additionalProperties: false
+    Environment_Output:
+      id: Environment_Output
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        name:
+          type: string
+        slug:
+          type: string
+        typeId:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        type:
+          $ref: "#/components/schemas/EnvironmentType_Output"
+        branch:
+          anyOf:
+            - type: string
+            - type: "null"
+        applicationId:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        createdBy:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+        updatedAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+      required:
+        - id
+        - name
+        - slug
+        - typeId
+        - branch
+        - applicationId
+        - createdBy
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+    EnvironmentType_Output:
+      id: EnvironmentType_Output
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        name:
+          type: string
+        description:
+          anyOf:
+            - type: string
+            - type: "null"
+        createdAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+      required:
+        - id
+        - name
+        - description
+        - createdAt
+      additionalProperties: false
+    DeploymentStatus_Output:
+      id: DeploymentStatus_Output
+      type: string
+      enum:
+        - queued
+        - building
+        - provisioning
+        - deploying
+        - ready
+        - failed
+        - cancelled
+    DeploymentListResponseDto_Output:
+      type: object
+      properties:
+        object:
+          type: string
+          const: list
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Deployment_Output"
+        hasMore:
+          type: boolean
+      required:
+        - object
+        - data
+        - hasMore
+      additionalProperties: false
+    DeploymentGetResponseDto_Output:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/Deployment_Output"
+      required:
+        - data
+      additionalProperties: false
+    CreateEnvironment:
+      id: CreateEnvironment
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 256
+        slug:
+          type: string
+          minLength: 1
+          maxLength: 256
+          pattern: ^[a-z0-9-]+$
+        typeId:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        branch:
+          type: string
+      required:
+        - name
+        - slug
+        - typeId
+    EnvironmentCreateRequestDto:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/CreateEnvironment"
+      required:
+        - data
+    EnvironmentCreateResponseDto_Output:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/Environment_Output"
+      required:
+        - data
+      additionalProperties: false
+    EnvironmentGetResponseDto_Output:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/Environment_Output"
+      required:
+        - data
+      additionalProperties: false
+    EnvironmentListResponseDto_Output:
+      type: object
+      properties:
+        object:
+          type: string
+          const: list
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Environment_Output"
+        hasMore:
+          type: boolean
+      required:
+        - object
+        - data
+        - hasMore
+      additionalProperties: false
+    EnvironmentTypeGetResponseDto_Output:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/EnvironmentType_Output"
+      required:
+        - data
+      additionalProperties: false
+    EnvironmentTypeListResponseDto_Output:
+      type: object
+      properties:
+        object:
+          type: string
+          const: list
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/EnvironmentType_Output"
+        hasMore:
+          type: boolean
+      required:
+        - object
+        - data
+        - hasMore
+      additionalProperties: false
+    InstancePresetListResponseDto_Output:
+      type: object
+      properties:
+        object:
+          type: string
+          const: list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              stripeProductId:
+                type: string
+              slug:
+                type: string
+              name:
+                type: string
+              description:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              category:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              vcpuCount:
+                type: integer
+                minimum: -9007199254740991
+                maximum: 9007199254740991
+              ramMiB:
+                type: integer
+                minimum: -9007199254740991
+                maximum: 9007199254740991
+              displayOrder:
+                type: integer
+                minimum: -9007199254740991
+                maximum: 9007199254740991
+              isActive:
+                type: boolean
+              createdAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+              updatedAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            required:
+              - id
+              - stripeProductId
+              - slug
+              - name
+              - description
+              - category
+              - vcpuCount
+              - ramMiB
+              - displayOrder
+              - isActive
+              - createdAt
+              - updatedAt
+            additionalProperties: false
+        hasMore:
+          type: boolean
+      required:
+        - object
+        - data
+        - hasMore
+      additionalProperties: false
+    InstancePresetGetResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            stripeProductId:
+              type: string
+            slug:
+              type: string
+            name:
+              type: string
+            description:
+              anyOf:
+                - type: string
+                - type: "null"
+            category:
+              anyOf:
+                - type: string
+                - type: "null"
+            vcpuCount:
+              type: integer
+              minimum: -9007199254740991
+              maximum: 9007199254740991
+            ramMiB:
+              type: integer
+              minimum: -9007199254740991
+              maximum: 9007199254740991
+            displayOrder:
+              type: integer
+              minimum: -9007199254740991
+              maximum: 9007199254740991
+            isActive:
+              type: boolean
+            createdAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            updatedAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+          required:
+            - id
+            - stripeProductId
+            - slug
+            - name
+            - description
+            - category
+            - vcpuCount
+            - ramMiB
+            - displayOrder
+            - isActive
+            - createdAt
+            - updatedAt
+          additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    GithubAppInstallationListResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              installationId:
+                type: number
+              iconUrl:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              installationType:
+                type: string
+                enum:
+                  - User
+                  - Organization
+              installationUrl:
+                type: string
+            required:
+              - id
+              - name
+              - installationId
+              - iconUrl
+              - installationType
+              - installationUrl
+            additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    GithubRepositoryListResponseDto_Output:
+      type: object
+      properties:
+        object:
+          type: string
+          const: list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: number
+              name:
+                type: string
+              fullName:
+                type: string
+              owner:
+                type: string
+              isPrivate:
+                type: boolean
+              defaultBranch:
+                type: string
+              url:
+                type: string
+              cloneUrl:
+                type: string
+            required:
+              - id
+              - name
+              - fullName
+              - owner
+              - isPrivate
+              - defaultBranch
+              - url
+              - cloneUrl
+            additionalProperties: false
+        hasMore:
+          type: boolean
+      required:
+        - object
+        - data
+        - hasMore
+      additionalProperties: false
+    GithubAppInstallationResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            installationId:
+              type: number
+            iconUrl:
+              anyOf:
+                - type: string
+                - type: "null"
+            installationType:
+              type: string
+              enum:
+                - User
+                - Organization
+            installationUrl:
+              type: string
+          required:
+            - id
+            - name
+            - installationId
+            - iconUrl
+            - installationType
+            - installationUrl
+          additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    ResourceType_Output:
+      id: ResourceType_Output
+      type: object
+      properties:
+        type:
+          type: string
+        description:
+          anyOf:
+            - type: string
+            - type: "null"
+        createdAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+        updatedAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+      required:
+        - type
+        - description
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+    ResourceTypeListResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/ResourceType_Output"
+      required:
+        - data
+      additionalProperties: false
+    ResourceTypeGetResponseDto_Output:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/ResourceType_Output"
+      required:
+        - data
+      additionalProperties: false
+    CreateResourceRule:
+      id: CreateResourceRule
+      type: object
+      properties:
+        providerId:
+          type: string
+        resourceType:
+          type: string
+        resourceId:
+          type: string
+        applicationId:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        envTypeId:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+        envId:
+          type: string
+          format: uuid
+          pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+      required:
+        - providerId
+        - resourceType
+    ResourceRuleCreateRequestDto:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/CreateResourceRule"
+      required:
+        - data
+    ResourceRule_Output:
+      id: ResourceRule_Output
+      type: object
+      properties:
+        id:
+          type: string
+        orgId:
+          anyOf:
+            - type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            - type: "null"
+        providerId:
+          type: string
+        resourceType:
+          type: string
+        resourceId:
+          anyOf:
+            - type: string
+            - type: "null"
+        applicationId:
+          anyOf:
+            - type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            - type: "null"
+        envTypeId:
+          anyOf:
+            - type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            - type: "null"
+        envId:
+          anyOf:
+            - type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            - type: "null"
+        createdAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+        updatedAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+      required:
+        - id
+        - orgId
+        - providerId
+        - resourceType
+        - resourceId
+        - applicationId
+        - envTypeId
+        - envId
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+    ResourceRuleCreateResponseDto_Output:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/ResourceRule_Output"
+      required:
+        - data
+      additionalProperties: false
+    ResourceRuleListResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/ResourceRule_Output"
+      required:
+        - data
+      additionalProperties: false
+    ResourceRuleGetResponseDto_Output:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/ResourceRule_Output"
+      required:
+        - data
+      additionalProperties: false
+    ResourceProvider_Output:
+      id: ResourceProvider_Output
+      type: object
+      properties:
+        id:
+          type: string
+        orgId:
+          anyOf:
+            - type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            - type: "null"
+        description:
+          anyOf:
+            - type: string
+            - type: "null"
+        resourceType:
+          type: string
+        params:
+          type: object
+          propertyNames:
+            type: string
+          additionalProperties:
+            $ref: "#/components/schemas/ModuleParamItem_Output"
+        inputs:
+          type: object
+          propertyNames:
+            type: string
+          additionalProperties: {}
+        createdAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+        updatedAt:
+          type: string
+          format: date-time
+          pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+      required:
+        - id
+        - orgId
+        - description
+        - resourceType
+        - params
+        - inputs
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+    ModuleParamItem_Output:
+      id: ModuleParamItem_Output
+      type: object
+      properties:
+        type:
+          $ref: "#/components/schemas/ModuleParamType_Output"
+        isOptional:
+          type: boolean
+        description:
+          type: string
+      required:
+        - type
+      additionalProperties: false
+    ModuleParamType_Output:
+      id: ModuleParamType_Output
+      type: string
+      enum:
+        - string
+        - number
+        - bool
+        - list
+        - set
+        - any
+    ResourceProviderListResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/ResourceProvider_Output"
+      required:
+        - data
+      additionalProperties: false
+    ResourceProviderGetResponseDto_Output:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/ResourceProvider_Output"
+      required:
+        - data
+      additionalProperties: false
+    HttpServiceCreateRequestDto:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            name:
+              type: string
+              minLength: 1
+              maxLength: 256
+            host:
+              type: string
+              minLength: 1
+            port:
+              type: integer
+              minimum: 1
+              maximum: 65535
+          required:
+            - name
+            - host
+      required:
+        - data
+    HttpServiceCreateResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            name:
+              type: string
+            host:
+              type: string
+            port:
+              anyOf:
+                - type: integer
+                  minimum: 1
+                  maximum: 65535
+                - type: "null"
+            organizationId:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            createdBy:
+              type: string
+            createdAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            updatedAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+          required:
+            - id
+            - name
+            - host
+            - port
+            - organizationId
+            - createdBy
+            - createdAt
+            - updatedAt
+          additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    HttpServiceListResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              name:
+                type: string
+              host:
+                type: string
+              port:
+                anyOf:
+                  - type: integer
+                    minimum: 1
+                    maximum: 65535
+                  - type: "null"
+              organizationId:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              createdBy:
+                type: string
+              createdAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+              updatedAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            required:
+              - id
+              - name
+              - host
+              - port
+              - organizationId
+              - createdBy
+              - createdAt
+              - updatedAt
+            additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    HttpClientCreateRequestDto:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            name:
+              type: string
+              minLength: 1
+              maxLength: 256
+            httpProxy:
+              type: string
+            httpsProxy:
+              type: string
+          required:
+            - name
+      required:
+        - data
+    HttpClientCreateResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            name:
+              type: string
+            httpProxy:
+              anyOf:
+                - type: string
+                - type: "null"
+            httpsProxy:
+              anyOf:
+                - type: string
+                - type: "null"
+            organizationId:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            status:
+              type: string
+            createdBy:
+              type: string
+            createdAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            updatedAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+          required:
+            - id
+            - name
+            - httpProxy
+            - httpsProxy
+            - organizationId
+            - status
+            - createdBy
+            - createdAt
+            - updatedAt
+          additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    HttpClientListResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              name:
+                type: string
+              httpProxy:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              httpsProxy:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              organizationId:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              status:
+                type: string
+              createdBy:
+                type: string
+              createdAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+              updatedAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            required:
+              - id
+              - name
+              - httpProxy
+              - httpsProxy
+              - organizationId
+              - status
+              - createdBy
+              - createdAt
+              - updatedAt
+            additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    SmtpServiceCreateRequestDto:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            name:
+              type: string
+              minLength: 1
+              maxLength: 256
+            host:
+              type: string
+              minLength: 1
+            port:
+              type: integer
+              minimum: 1
+              maximum: 65535
+            useTls:
+              type: boolean
+          required:
+            - name
+            - host
+      required:
+        - data
+    SmtpServiceCreateResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            name:
+              type: string
+            host:
+              type: string
+            port:
+              anyOf:
+                - type: integer
+                  minimum: 1
+                  maximum: 65535
+                - type: "null"
+            useTls:
+              anyOf:
+                - type: boolean
+                - type: "null"
+            organizationId:
+              type: string
+              format: uuid
+              pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+            createdBy:
+              type: string
+            createdAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            updatedAt:
+              type: string
+              format: date-time
+              pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+          required:
+            - id
+            - name
+            - host
+            - port
+            - useTls
+            - organizationId
+            - createdBy
+            - createdAt
+            - updatedAt
+          additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+    SmtpServiceListResponseDto_Output:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              name:
+                type: string
+              host:
+                type: string
+              port:
+                anyOf:
+                  - type: integer
+                    minimum: 1
+                    maximum: 65535
+                  - type: "null"
+              useTls:
+                anyOf:
+                  - type: boolean
+                  - type: "null"
+              organizationId:
+                type: string
+                format: uuid
+                pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+              createdBy:
+                type: string
+              createdAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+              updatedAt:
+                type: string
+                format: date-time
+                pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+            required:
+              - id
+              - name
+              - host
+              - port
+              - useTls
+              - organizationId
+              - createdBy
+              - createdAt
+              - updatedAt
+            additionalProperties: false
+      required:
+        - data
+      additionalProperties: false
+security:
+  - bearer: []
